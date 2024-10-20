@@ -17,7 +17,7 @@ function App() {
 
         // Send message to backend
         try {
-            const response = await fetch('https://dominant-lab-multiply.ngrok-free.app/chat', {
+            const response = await fetch('https://alert-raven-wealthy.ngrok-free.app', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
