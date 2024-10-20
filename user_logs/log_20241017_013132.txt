@@ -1,0 +1,122 @@
+User: code for simple html game
+Jarvis: Here's a simple HTML code for a game where the player controls a ball that bounces off walls and score points.
+
+**index.html**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Ball Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+**styles.css**
+```css
+#gameCanvas {
+    border: 1px solid black;
+}
+```
+
+**script.js**
+```javascript
+// Get the canvas element and create a context
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// Set the canvas dimensions
+canvas.width = 400;
+canvas.height = 400;
+
+// Define the ball properties
+let ballX = canvas.width / 2;
+let ballY = canvas.height / 2;
+let ballSpeedX = 3;
+let ballSpeedY = 3;
+let ballRadius = 20;
+let score = 0;
+
+// Define the walls properties
+const wallWidth = 200;
+const wallHeight = 50;
+
+// Draw the game over screen when the player loses
+function drawGameOver() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'black';
+    ctx.font = '24px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2);
+}
+
+// Draw the ball
+function drawBall() {
+    ctx.fillStyle = 'blue';
+    ctx.beginPath();
+    ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+// Update the game state
+function update() {
+    // Move the ball
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+
+    // Check for collision with walls
+    if (ballX - ballRadius < 0 || ballX + ballRadius > canvas.width) {
+        ballSpeedX *= -1;
+    }
+    if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
+        ballSpeedY *= -1;
+
+        // Check for collision with the score
+        if (Math.hypot(ballX, ballY) < Math.min(wallWidth / 2, wallHeight / 2)) {
+            score++;
+            drawGameOver();
+        } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'black';
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 2);
+            drawBall();
+        }
+    }
+
+    // Draw the ball and score
+    ctx.fillStyle = 'blue';
+    ctx.beginPath();
+    ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.font = '24px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Score: ' + score, canvas.width / 2, canvas.height - 20);
+}
+
+// Main game loop
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    update();
+    requestAnimationFrame(draw);
+}
+
+draw();
+```
+
+This code creates a simple bouncing ball game where the player controls a blue ball that bounces off the walls and scores points. The score is displayed at the top of the screen.
+
+Note: You'll need to create an HTML file (`index.html`) and a CSS file (`styles.css`) in the same directory for this code to work properly.
+
+To run this game, save both files in the same directory and open `index.html` in your web browser.
+----------------------------------------

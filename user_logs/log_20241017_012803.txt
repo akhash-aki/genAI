@@ -1,0 +1,7 @@
+User: how can i help you?
+Jarvis: I'm Jarvis, your personal assistant. I'm here to help with any questions or tasks you may have. Whether it's providing information, completing a task, or just having a conversation, I'm here to assist.
+
+You could also ask me things like "What's the weather like today?" or "How do I get to the airport?" or even just want to chat about your day. I'm all ears (or rather, all text).
+
+If you need any help with something specific, feel free to ask and I'll do my best to provide assistance.
+----------------------------------------
