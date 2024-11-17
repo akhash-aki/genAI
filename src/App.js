@@ -38,14 +38,14 @@ function App() {
                 // Handle error in case the response isn't OK
                 setMessages((prevMessages) => [
                     ...prevMessages,
-                    { role: 'bot', content: 'Error: Failed to fetch response' },
+                    { role: 'bot', content: 'Response varlaa' },
                 ]);
             }
         } catch (error) {
             // Handle network error
             setMessages((prevMessages) => [
                 ...prevMessages,
-                { role: 'bot', content: 'Error: Could not reach the server.' },
+                { role: 'bot', content: 'Server off la iruku.. avana server on pana solu ' },
             ]);
         }
 
