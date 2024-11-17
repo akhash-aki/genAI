@@ -1,0 +1,169 @@
+User: can you share a html code for simple game
+Jarvis: Here is a simple HTML code for a basic game:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Game</title>
+  <style>
+    /* Add some basic styling to make the game look nicer */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    
+    #game-container {
+      width: 80%;
+      margin: 40px auto;
+      text-align: center;
+    }
+    
+    #game-screen {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .player {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      background-color: #f00;
+    }
+    
+    .enemy {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      height: 100px;
+      background-color: #0f0;
+    }
+    
+    .score {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <!-- The game screen will be rendered here -->
+    <canvas id="game-screen" width="400" height="300"></canvas>
+  </div>
+
+  <script>
+    // Get the canvas element
+    const canvas = document.getElementById('game-screen');
+    const ctx = canvas.getContext('2d');
+
+    // Define some constants for the game
+    const playerSize = 20;
+    const enemySize = 30;
+
+    // Initialize variables
+    let score = 0;
+
+    // Function to draw the player and enemy on the screen
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the player
+      ctx.fillStyle = 'blue';
+      ctx.fillRect(10, 20, playerSize, playerSize);
+
+      // Draw the enemy
+      ctx.fillStyle = 'red';
+      ctx.fillRect(80, 40, enemySize, enemySize);
+
+      // Update the score display
+      document.getElementById('score').innerHTML = `Score: ${score}`;
+
+      // Add event listeners to move the player and enemy around the screen
+    }
+
+    // Function to handle keyboard input
+    function handleInput(e) {
+      switch (e.key) {
+        case 'w':
+          // Move up when w is pressed
+          break;
+        case 's':
+          // Move down when s is pressed
+          break;
+        case 'a':
+          // Move left when a is pressed
+          break;
+        case 'd':
+          // Move right when d is pressed
+          break;
+      }
+    }
+
+    // Main game loop
+    function loop() {
+      requestAnimationFrame(loop);
+
+      // Update the position of the player and enemy based on user input
+      handleInput(e);
+      draw();
+
+      // Check for collisions between the player and enemy
+      if (checkCollision()) {
+        alert('Game Over!');
+        score = 0;
+      } else {
+        score++;
+      }
+
+      // Limit the game to running at a maximum of 60 frames per second
+    }
+
+    // Function to check for collisions between the player and enemy
+    function checkCollision() {
+      const playerRect = canvas.getBoundingClientRect();
+      const enemyRect = new Rectangle({
+        x: enemySize / 2,
+        y: -enemySize / 2 + playerRect.y,
+        width: enemySize,
+        height: enemySize
+      });
+
+      return (
+        playerRect.x < enemyRect.x + enemyRect.width &&
+        playerRect.x + playerSize > enemyRect.x &&
+        playerRect.y < enemyRect.y + enemyRect.height &&
+        playerRect.y + playerSize > enemyRect.y
+      );
+    }
+
+    // Create a rectangle for the player and enemy
+    function Rectangle({
+      x,
+      y,
+      width,
+      height
+    }) {
+      return {
+        x,
+        y,
+        width,
+        height
+      };
+    }
+
+    loop();
+  </script>
+</body>
+</html>
+```
+
+This code creates a simple game where the player (blue rectangle) can move up, down, left, and right using the W, A, S, and D keys. The enemy (red rectangle) will automatically appear on the screen at a random position when you start playing.
+
+Note that this is just a basic example to get you started. You can add more features like scoring, level progression, power-ups, etc. as per your requirements.
+----------------------------------------

@@ -1,0 +1,95 @@
+User: html code for a game
+Jarvis: Here's some sample HTML code for a simple text-based adventure game:
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 800px;
+      height: 600px;
+      margin: 20px auto;
+    }
+    #game-container {
+      width: 80%;
+      height: 90%;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    #controls {
+      float: right;
+      padding: 10px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <h1>My First Game</h1>
+    <p>Hello, adventurer! You are standing in front of a dark cave. What do you want to do?</p>
+    <ul>
+      <li><button onclick="moveForward()">Go Forward</button></li>
+      <li><button onclick="moveBackward()">Go Backward</button></li>
+      <li><button onclick="fightMonster()">Fight Monster</button></li>
+    </ul>
+  </div>
+
+  <!-- controls section -->
+  <div id="controls">
+    <p>Controls:</p>
+    <ul>
+      <li><button onclick="moveForward()">Next Step</button></li>
+      <li><button onclick="moveBackward()">Previous Step</button></li>
+      <li><button onclick="fightMonster()">Fight Monster</button></li>
+      <li><button onclick="quitGame()">Quit Game</button></li>
+    </ul>
+  </div>
+
+  <!-- game logic -->
+  <script>
+    function moveForward() {
+      // TO DO: implement movement logic
+      console.log("You moved forward!");
+      // add code here to handle the moving logic
+    }
+
+    function moveBackward() {
+      // TO DO: implement movement logic
+      console.log("You moved backward!");
+      // add code here to handle the moving logic
+    }
+
+    function fightMonster() {
+      // TO DO: implement monster combat logic
+      console.log("You fought a monster! You won!");
+      // add code here to handle the combat logic
+    }
+
+    function quitGame() {
+      // TO DO: implement game over logic
+      console.log("You quit the game!");
+      // add code here to handle the game over logic
+    }
+  </script>
+</body>
+</html>
+```
+This is a very basic example and there's much more you can do with HTML, CSS, and JavaScript. But this should give you an idea of how to structure a simple text-based adventure game.
+
+Note that in this code:
+
+* `#game-container` is the container element for the game content.
+* `#controls` is a section for displaying controls.
+* Buttons are created using JavaScript and event listeners (`onclick`) to handle user input.
+* The game logic (e.g. movement, combat) is implemented as functions that can be called from within these buttons.
+
+This code should serve as a starting point for creating your own text-based adventure game!
+----------------------------------------

@@ -1,0 +1,107 @@
+User: code for python game
+Jarvis: I'd be happy to provide a simple Python code example for a game.
+
+Here's a basic implementation of a 2D Space Invaders clone using the Pygame library in Python:
+```python
+import pygame
+import sys
+
+# Initialize Pygame
+pygame.init()
+
+# Set up some constants
+WIDTH, HEIGHT = 800, 600
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+
+# Set up the display
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+# Set up the font
+font = pygame.font.Font(None, 36)
+
+class Ship:
+    def __init__(self):
+        self.x = WIDTH // 2
+        self.y = HEIGHT - 50
+
+    def move_up(self):
+        if self.y > 0:
+            self.y -= 5
+
+    def move_down(self):
+        if self.y < HEIGHT - 50:
+            self.y += 5
+
+class Bullet:
+    def __init__(self, x, y, angle):
+        self.x = x
+        self.y = y
+        self.angle = angle
+
+    def update(self):
+        self.x += math.cos(math.radians(self.angle)) * 2
+        self.y -= math.sin(math.radians(self.angle)) * 2
+
+class Enemy:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+def main():
+    clock = pygame.time.Clock()
+    ship = Ship()
+    bullets = []
+    enemies = [Enemy(random.randint(0, WIDTH), random.randint(-HEIGHT, 0)) for _ in range(10)]
+
+    while True:
+        # Event handling
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_UP]:
+            ship.move_up()
+        if keys[pygame.K_DOWN]:
+            ship.move_down()
+
+        # Move bullets and enemies
+        for bullet in bullets[:]:
+            bullet.update()
+            if bullet.x < 0 or bullet.y < 0:
+                bullets.remove(bullet)
+        for enemy in enemies[:]:
+            enemy.move_down()
+            for bullet in bullets[:]:
+                distance = math.hypot(enemy.x - bullet.x, enemy.y - bullet.y)
+                if distance < 50 and math.cos(math.radians(enemy.angle)) * 2 + math.sin(math.radians(enemy.angle)) > bullet.y:
+                    bullets.remove(bullet)
+
+        # Draw everything
+        screen.fill(WHITE)
+        ship.draw(screen)
+        for bullet in bullets[:]:
+            pygame.draw.rect(screen, RED, (bullet.x, bullet.y, 5, 5))
+        for enemy in enemies[:]:
+            pygame.draw.rect(screen, RED, (enemy.x, enemy.y, 20, 20))
+
+        # Check if game is won or lost
+        if all(not bullet in bullets for bullet in bullets):
+            print("You win!")
+        elif any(bullet not in bullets for bullet in bullets):
+            print("Game over!")
+
+        pygame.display.flip()
+        clock.tick(60)
+
+if __name__ == "__main__":
+    main()
+```
+This code creates a window with a ship and 10 enemies that move down the screen. Bullets are fired by the user, and they hit the enemies if they go below the bottom of the screen.
+
+To run this code, you'll need to install Pygame using `pip install pygame`. Then, simply save this code in a file (e.g., `space_invaders.py`) and run it using Python (e.g., `python space_invaders.py`).
+
+Note that this is just a basic example, and there are many ways you could improve the game (e.g., add scoring, power-ups, more enemies).
+----------------------------------------
